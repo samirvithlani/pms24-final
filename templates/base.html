@@ -29,7 +29,12 @@
 
     <main class = "main-content position-relative border-radius-lg ps">
         <div class = "container-fluid py-4">
-          {% include "./navbar.html" %}
+          
+          {% block nav %}
+            {% include "./navbar.html" %}  
+          {% endblock nav %}
+            
+          
     {% block content %}
         
     {% endblock content %}
