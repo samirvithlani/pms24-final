@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
+from project.models import Project
 
 # Create your views here.
 class ManagerRegisterView(CreateView):
@@ -65,7 +66,11 @@ class ManagerDashboardView(ListView):
     
     def get(self, request, *args, **kwargs):
         #logic to get all the projects
-        return render(request, 'user/manager_dashboard.html')
+        projects = Project.objects.all() #select * from project
+        
+        return render(request, 'user/manager_dashboard.html',{
+            projects:projects
+        })
     
     
     template_name = 'user/manager_dashboard.html'
