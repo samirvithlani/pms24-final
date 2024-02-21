@@ -66,10 +66,12 @@ class ManagerDashboardView(ListView):
     
     def get(self, request, *args, **kwargs):
         #logic to get all the projects
+        print("ManagerDashboardView")
         projects = Project.objects.all() #select * from project
+        print(".............................................",projects)
         
         return render(request, 'user/manager_dashboard.html',{
-            projects:projects
+            "projects":projects
         })
     
     
