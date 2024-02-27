@@ -13,6 +13,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import ListView
 from project.models import Project
 
+
 # Create your views here.
 class ManagerRegisterView(CreateView):
     template_name = 'user/manage_register.html'
@@ -83,4 +84,6 @@ class DeveloperDashboardView(ListView):
         return render(request, 'user/developer_dashboard.html')
     
     template_name = 'user/developer_dashboard.html'    
+
+
        

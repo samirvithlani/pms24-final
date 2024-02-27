@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from .forms import ProjectCreationForm
 from .models import Project,ProjectTeam
 from .forms import ProjectTeamCreationForm
+from .models import City
 
 # Create your views here.
 
@@ -27,3 +28,20 @@ class ProjectTeamCreateView(CreateView):
     success_url = '/project/list/'
     form_class = ProjectTeamCreationForm
     
+
+
+def pieChart(request):
+    labels = []
+    data = []
+    
+    queryset = City.objects.order_by('-population')[:5]
+    #[mumbai,tokio]
+    #[100000,200000]
+    for city in queryset:
+        labels.append(city.name)
+        data.append(city.population)
+        
+    return render(request, 'project/pie_chart.html',{
+        'labels':labels,
+        'data':data
+    })        
