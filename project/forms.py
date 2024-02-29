@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project,ProjectTeam
+from .models import Project,ProjectTeam,Books
 
 
 class ProjectCreationForm(forms.ModelForm):
@@ -13,4 +13,7 @@ class ProjectTeamCreationForm(forms.ModelForm):
         fields ='__all__'        
         
         
-        
+class BookCreationForm(forms.ModelForm):
+    class Meta:
+        model = Books
+        fields ='__all__'
