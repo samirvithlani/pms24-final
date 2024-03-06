@@ -70,5 +70,47 @@ class Books(models.Model):
         return self.name
     
     
+taskPriority = (
+    ("High","High"),
+    ("Medium","Medium"),
+    ("Low","Low"),
+)    
+taskSatatus = (
+    ("Not Started","Not Started"),
+    ("In Progress","In Progress"),
+    ("Completed","Completed"),
+)
+class Task(models.Model):
+    title = models.CharField(max_length=100)
+    priority = models.CharField(max_length=100,choices=taskPriority)
+    status = models.CharField(max_length=100,choices=taskSatatus)
+    hours = models.PositiveIntegerField()
+    is_assigned = models.BooleanField(default=False)
+    
+    class Meta:
+        db_table = "task"
+    
+    def __str__(self):
+        return self.title    
+    
+
+#class name must starts with cap
+class user_task(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    task = models.ForeignKey(Task,on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)   
+    
+    class Meta:
+        db_table = "user_task"
+    
+    def __str__(self):
+        return self.task.title +" - "+self.user.username     
+
+
+
+
+
+    
     
             

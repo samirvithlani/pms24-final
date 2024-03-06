@@ -1,5 +1,6 @@
 from django import forms
 from .models import Project,ProjectTeam,Books
+from .models import user_task
 
 
 class ProjectCreationForm(forms.ModelForm):
@@ -17,3 +18,11 @@ class BookCreationForm(forms.ModelForm):
     class Meta:
         model = Books
         fields ='__all__'
+
+
+class TaskASignForm(forms.ModelForm):
+    class Meta:
+        model = user_task
+        fields ='__all__'        
+    
+            

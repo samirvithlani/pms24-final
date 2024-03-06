@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>
+            <td>TASK NAME</td>
+            <td>STATUS</td>
+        </th>
+    </tr>
+    
+    {% for task in tasks  %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.status }}</td>
+            <td>
+                {% comment %} <a href = "{% url 'update_status' task.id %}">in progress</a> {% endcomment %}
+                <form action="{% url 'update_status' task.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="in progress">
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+        
+</table>

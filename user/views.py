@@ -14,6 +14,7 @@ from django.views.generic import ListView
 from project.models import Project
 
 
+
 # Create your views here.
 class ManagerRegisterView(CreateView):
     template_name = 'user/manage_register.html'
@@ -57,6 +58,7 @@ class UserLoginView(LoginView):
     
     
     def get_redirect_url(self):
+        print(self.request.user)
         if self.request.user.is_authenticated:
             if self.request.user.is_manager:
                 return '/user/manager-dashboard/'
@@ -78,12 +80,19 @@ class ManagerDashboardView(ListView):
     
     template_name = 'user/manager_dashboard.html'
 
+#@MethodDecorator(loginDecorator)
+
 class DeveloperDashboardView(ListView):
     def get(self, request, *args, **kwargs):
         #logic to get all the projects
+        #loggedin developer --
+        #select * from user_task where user_id = request.user.id
+        #tasks = user_task.objects.filter(user=request.user)
         return render(request, 'user/developer_dashboard.html')
     
     template_name = 'user/developer_dashboard.html'    
 
 
+
+    
        
