@@ -78,13 +78,19 @@ class TaskListView(ListView):
 
 class UpdateStatusView(View):
     
-    def post(self,request,pk):
-        print("UpdateStatusView")
-        task = Task.objects.get(id=pk) #1    
-         
-        print("task..",task)
-        task.status = "In Progress"
-        print("task updated..")
+    def post(self, request, pk):
+        # Get the task instance
+        print("pk....",pk)
+        task = Task.objects.get(id=pk)
+        print("task....",task)
+        
+        # Check the current status and update it accordingly
+        if task.status == "Not Started":
+            task.status = "In Progress"
+        elif task.status == "In Progress":
+            task.status = "Done"
+        
+        # Save the updated task
         task.save()
         
-        return redirect(reverse('task_list'))
+        return redirect(reverse('task_list')) #lazy reverse

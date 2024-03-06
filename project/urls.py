@@ -13,6 +13,6 @@ urlpatterns = [
  path("book_list/",views.BookListView.as_view(),name="book_list"),
  path("task_assign/",views.TaskASignView.as_view(),name="task_assign"),
  path("task_list/",views.TaskListView.as_view(),name="task_list"),
- path("task_update/<int:pk>/",views.UpdateStatusView.as_view(),name="update_status"),
+ path("task_status_update/<int:pk>/",views.UpdateStatusView.as_view(),name="update_status"),
  
 ]
